@@ -26,4 +26,17 @@ install kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/#
 install minikube 
 https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
 
-make sure your system has virtualization enabled
+make sure your system has virtualization enabled if you are using VM (skipping this step)
+install vm https://www.virtualbox.org/wiki/Downloads (skipping this step)
+
+
+I will run Minikube on Docker as the driver.So follow below cmd
+minikube start --driver=docker 
+
+kubectl get pods -A ---> This command lists all pods across all namespaces in your Kubernetes cluster
+kubectl create deployment nginx --image=nginx ---> creates a deployment with the name ngnix
+kubectl get pods
+kubectl expose deployment nginx --type=NodePort --port=80  ---> Expose nginx as a service and this will open nginx’s welcome page in your browser.
+kubectl scale deployment nginx --replicas=3
+minikube dashboard
+minikube dashboard --url 
