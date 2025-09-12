@@ -37,6 +37,7 @@ kubectl get pods -A ---> This command lists all pods across all namespaces in yo
 kubectl create deployment nginx --image=nginx ---> creates a deployment with the name ngnix
 kubectl get pods
 kubectl expose deployment nginx --type=NodePort --port=80  ---> Expose nginx as a service and this will open nginx’s welcome page in your browser.
+minikube service ngnix (launches ngnix home page)
 kubectl scale deployment nginx --replicas=3
 minikube dashboard
 minikube dashboard --url 
