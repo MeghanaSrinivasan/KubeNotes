@@ -1,1 +1,8 @@
+minikube start --driver=docker
+minikube start
 
+minikube dashboard
+minikube dashboard --url 
+minikube service <service-name>
+minikube service <service-name> --url 
+  example: minikube service myapp-service --url
