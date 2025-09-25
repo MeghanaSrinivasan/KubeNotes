@@ -1,1 +1,22 @@
+kubectl cluster-info
+
+kubectl get pods
+kubectl get pod <pod-name> --show-labels
+kubectl get pod -o wide
+
+
+kubectl get svc --> lists the services
+kubectl get svc <svc-name>
+    example: kubectl get svc nginx-nodeport ( nginx-nodeport is a name of the service i created as an example)
+
+kubectl get nodes
+
+when you are creating kube objects using yaml files. follow either of the below cmds:
+1. kubectl create -f <object-name.yaml>
+   example: kubectl create -f deployment.yaml 
+            kubectl create -f service-definition.yaml
+2. kubectl apply -f <object-name.yaml>>
+  example: kubectl apply -f C:\K8s\manifests\nginx-nodeport.yaml
+           kubectl apply -f service-definition.yaml
+
 
