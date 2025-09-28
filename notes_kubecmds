@@ -5,7 +5,8 @@ kubectl get pod <pod-name> --show-labels
 kubectl get pod -o wide
 
 
-kubectl get svc --> lists the services
+kubectl get svc (or) kubectl get service --> lists the services
+kubectl describe svc (or) kubectl describe service
 kubectl get svc <svc-name>
     example: kubectl get svc nginx-nodeport ( nginx-nodeport is a name of the service i created as an example)
 
