@@ -1,0 +1,71 @@
+Services: 
+abstract method of exposing an application
+helps in communicating between other applications. 
+for example: there are 3 groups of pods.
+1. running the front end
+2. one running the backend
+3. one for external data source
+it is services that enable connectivity btw these groups of pods. thus, it enables loose coupling btw microservices in our application
+
+--> enables connectivity
+--> external connectivity:
+
+3 types of Services:
+NodePort
+clusterIP
+LoadBalancer
+
+
+NodePort: 
+
+here the service listens to port on the node and forwards the request to the port on the pod that is running the application
+
+--> Exposes the Service on a static port (30000 - 32767) on every Node's IP
+--> Clients outside the cluster can connect via:
+  $ curl http://<NodeIP>:<NodePort>
+--> The Service forwards traffic to the right pod
+
+use case: when you want to expose apps without a cloud load balancer
+
+cmd: This exposes nginx on a random port on your local machine: 
+kubectl expose deployment nginx --type=NodePort --port=80
+
+
+structure:
+apiVersion:v1
+Kind:Service
+metadata:
+	name : myapp-service
+spec:
+	type: NodePort
+	ports:
+	  targetPort: 80
+	  port: 80
+	  nodePort: 30008
+       selector:
+	  app: myapp
+	  type: front-end	
+
+
+when creating service using yaml file, the selectors are very important. because here we specify the labels of the pods to identify the pods. This links the service to the pod
+
+cmd to create service using yaml file 
+kubectl create -f nginx-nodeport.yaml
+
+cmd to see the list of services
+kubectl get svc
+
+
+
+=============================================
+
+cluster ip
+
+============================================
+
+kube-proxy 
+service 
+-- it is simple proxy. any request comes to service iP it routes to different IPs
+-- k8s resource service does not consume CPU/memory
+
+
