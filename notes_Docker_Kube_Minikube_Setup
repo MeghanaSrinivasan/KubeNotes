@@ -23,8 +23,14 @@ https://kubernetes.io/docs/tasks/tools/
 install kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/#install-kubectl-binary-on-windows-via-direct-download-or-curl
 (kubectl utility works with multiple clusters at the same time)
 
-install minikube 
+to set up a cluster in your local, you can either use minikube or kind
+To install minikube 
 https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
+
+To install kind, use the following cmd:
+curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/latest/kind-windows-amd64
+Move-Item .\kind-windows-amd64.exe C:\Windows\System32\kind.exe
+
 
 make sure your system has virtualization enabled if you are using VM (skipping this step)
 install vm https://www.virtualbox.org/wiki/Downloads (skipping this step)
