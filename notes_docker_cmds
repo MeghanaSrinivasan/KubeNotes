@@ -1,0 +1,7 @@
+docker ps -a
+docker system  prune -f  (to clean)
+docker network ls
+
+docker ps
+docker network ls
+cat ~/.kube/config
