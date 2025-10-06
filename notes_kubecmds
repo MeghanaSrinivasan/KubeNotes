@@ -19,5 +19,23 @@ when you are creating kube objects using yaml files. follow either of the below 
 2. kubectl apply -f <object-name.yaml>>
   example: kubectl apply -f C:\K8s\manifests\nginx-nodeport.yaml
            kubectl apply -f service-definition.yaml
+kubectl version --output=yaml
+
+kubectl config current-context
+kubectl config get-contexts
+kubectl config use-context <cluster name> 
+e.g: kubectl config use-context minikube 
+     kubectl config use-context kind-dev-cluster
+
+
+kubectl delete -f <filename>
+kubectl describe pod
+kubectl describe pod <pod-name> (or) kubectl describe pod/<pod-name>
+kubectl get pod -o wide (it shows which pod runs on which node)
+kubectl get pod <pod-name> -o yaml (to see the output in the yaml format)
+kubectl delete pod <pod-name> (or) kubectl delete pod/<pod-name>
+
+kubectl port-forward <resource-name> <local-port>:<pod-port>
+
 
 
