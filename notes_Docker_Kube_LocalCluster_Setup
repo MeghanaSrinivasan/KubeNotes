@@ -31,6 +31,7 @@ To install kind, use the following cmd:
 curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/latest/kind-windows-amd64
 Move-Item .\kind-windows-amd64.exe C:\Windows\System32\kind.exe
 
+to create kind cluster: kind create cluster --config 01-cluster.yaml
 for more info on kind cluster: https://kind.sigs.k8s.io/
 
 
