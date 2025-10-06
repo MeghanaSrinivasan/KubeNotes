@@ -1,0 +1,84 @@
+pod:
+basic building block to create workload
+
+Docker:
+we package the app/any executable along with all the dependencies as a docker image
+we create an instance of the image --> container
+we treat each container like a VM
+Containers can talk to each other via IP address/service name
+
+Smallest deployable unit in k8s
+Pod can run one or more containers
+only one of the containers is your app container
+other containers are helpers
+Pod represents a VM and containers represent the process
+=================================================
+
+Kubectl --> API Manager (validates) ---> Schedular (the schedular help for the node assignment, and the schedular will be picking a node)
+once the node is assigned, kublet, pulls the image and creates the container and starts the container)
+
+=================================================
+What is ImagePullBackOff?
+
+It means Kubernetes tried to pull (download) the container image for your Pod —
+but failed, and now it’s backing off (waiting before retrying).
+
+So basically:
+
+Kubernetes wants to start your container.
+
+It asks the container runtime (Docker or containerd) to pull the image (e.g. from Docker Hub or another registry).
+
+The pull fails → Kubernetes retries after some time → BackOff.
+
+🔁 Word Breakdown
+Term	Meaning
+ImagePull	Attempt to download (pull) the image
+BackOff	Kubernetes will wait longer each time before retrying (1s, 2s, 4s, 8s...)
+
+=================================================
+
+What is CrashLoopBackOff?
+
+It means your container starts, crashes, and Kubernetes keeps trying to restart it, over and over again — but it fails each time.
+
+So the pod goes into a loop of crashing and restarting → hence the name CrashLoopBackOff.
+
+🔁 Word Breakdown
+
+Crash → container terminated with an error (non-zero exit code)
+
+Loop → it keeps restarting again and again
+
+BackOff → Kubernetes waits a bit longer each time before retrying (1s, 2s, 4s, 8s...)
+
+==============================================================================================
+Ready column
+(readiness check)
+<number of containers ready> / <total number of containers in the pod>
+
+
+So it tells you how many containers inside the pod are healthy and ready to serve traffic.
+
+==============================================================================================
+Pending :	    Node is yet to be assigned
+ContainerCreating : Kubelet is working on creating container
+Running :	    Kubelet started the container
+ErrImagePull / ImagePullBackOff : Failed pulling image. Kubelet will retry with some delay
+Completed :         Container exited successfully
+Error :             Container exited with error
+CrashLoopBackOff :  There is a problem in running the container. Kubelet is retrying with delay.
+(no issues in pulling the image)
+Terminating :       Pod is getting delete
+
+=======================================================================================
+Port forwarding
+Port forwarding lets you access a Pod or Service running inside your Kubernetes cluster — directly from your local machine, without exposing it externally.
+
+So basically:
+
+Kubernetes is running something on the cluster’s internal network (not accessible from outside).
+
+You run a kubectl port-forward command to temporarily open a tunnel between your local port and the Pod/Service port.
+
+kubectl port-forward <resource-name> <local-port>:<pod-port>
